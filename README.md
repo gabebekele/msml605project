@@ -14,10 +14,10 @@ python3 -m venv .venv
 
 Activate the virtual environment:
 
-for macOS/Linux
+for macOS/Linux:
 source .venv/bin/activate
 
-for Windows
+for Windows:
 .venv\Scripts\Activate.ps1
 
 And then install the requirements:
