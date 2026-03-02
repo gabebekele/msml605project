@@ -33,9 +33,7 @@ def write_pairs_csv(path, rows):
 
 
 def reconstruct_identity_split(config, seed):
-    """
-    Recreates the exact identity split used in ingest.py
-    """
+    
     ds = tfds.load("lfw", split="train", data_dir=config["data_dir"])
 
     identities = set()
@@ -62,9 +60,7 @@ def reconstruct_identity_split(config, seed):
     return tr_ids, va_ids, te_ids
 
 def collect_images_by_identity(cfg, split_ids):
-    """
-    Returns dict: {identity: [relative_path_strings]}
-    """
+    
     ds = tfds.load("lfw", split="train", data_dir=cfg["data_dir"])
 
     images_by_id = {}
@@ -86,7 +82,7 @@ def collect_images_by_identity(cfg, split_ids):
 
         images_by_id.setdefault(identity, []).append(rel_path)
 
-    # Ensure deterministic filename ordering
+    # Sort so it is deterministic
     for identity in images_by_id:
         images_by_id[identity] = sorted(images_by_id[identity])
 
@@ -101,7 +97,7 @@ def generate_pairs(images_by_id, seed, split_name):
     positive_pairs = []
     negative_pairs = []
 
-    # ---- Positive pairs ----
+    # Positive pairs
     for identity in identities:
         imgs = images_by_id[identity]
         if len(imgs) < 2:
@@ -112,7 +108,7 @@ def generate_pairs(images_by_id, seed, split_name):
 
         positive_pairs.extend(combos)
 
-    # ---- Negative pairs ----
+    # Negative pairs
     for i in range(len(identities)):
         for j in range(i + 1, len(identities)):
             id_a = identities[i]
@@ -125,7 +121,7 @@ def generate_pairs(images_by_id, seed, split_name):
 
     negative_pairs = sorted(negative_pairs)
 
-    # Balance negatives to match positives
+    # Balance negatives and positives
     if len(negative_pairs) > len(positive_pairs):
         rng.shuffle(negative_pairs)
         negative_pairs = negative_pairs[:len(positive_pairs)]

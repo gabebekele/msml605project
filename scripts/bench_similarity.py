@@ -65,6 +65,7 @@ def main():
     print("Euclidean vectorized time:", vec_time_euc)
     print("Euclidean max diff:", e_diff)
 
+    # write to output
     os.makedirs("outputs", exist_ok=True)
 
     results = {
