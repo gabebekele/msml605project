@@ -1,0 +1,7 @@
+seed: 123
+data_dir: data/lfw
+outputs_dir: outputs
+split_policy: by_identity_70_15_15
+train_frac: 0.70
+val_frac: 0.15
+test_frac: 0.15
