@@ -60,16 +60,21 @@ To reproduce the evaluation and error analysis, ensure your virtual environment 
 
 The evaluation system uses a base configuration file with command-line overrides for specific experimental runs. To reproduce the results of the best run which used Z-score normalization and the balanced accuracy rule, execute:
 
-python -m src.evaluation --run_id run_3_zscore --norm z-score --rule balanced_accuracy
+python -m src.evaluation --run_id run_3_zscore --norm z-score
 
 This command performs a threshold sweep, identifies the optimal decision boundary, and generates the corresponding metrics and visualizations. You can also reproduce the other runs like the Run 1 baseline or the Run 5 edge case by adjusting the flags. 
 
-EX:
 # Run 1: Baseline (No Norm)
 python -m src.evaluation --run_id run_1_baseline
 
+# Run 2:
+python -m src.evaluation --run_id run_2 --metric f1
+
+# Run 4:
+python -m src.evaluation --run_id run_4 --norm min_max
+
 # Run 5:
-python -m src.evaluation --run_id run_5_f1 --norm z-score --metric f1
+python -m src.evaluation --run_id run_5 --norm z-score --metric f1
 
 To verify the evaluation metrics are wworking as intended run the metric test as shown below:
 
