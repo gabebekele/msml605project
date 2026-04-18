@@ -1,5 +1,5 @@
 seed: 123
-data_dir: "data/lfw/downloads/extracted/TAR_GZ.ndownloader.figshare.com_files_5976018BV99nGMtc3Dm-0r8dGjUD5cMNKgNTG9Q_-xj9ajVNsA"
+data_dir: "data/lfw/downloads/extracted/TAR_GZ.ndownloader.figshare.com_files_5976018BV99nGMtc3Dm-0r8dGjUD5cMNKgNTG9Q_-xj9ajVNsA/downloads/extracted/TAR_GZ.ndownloader.figshare.com_files_5976018BV99nGMtc3Dm-0r8dGjUD5cMNKgNTG9Q_-xj9ajVNsA/lfw"
 outputs_dir: outputs
 split_policy: by_identity_70_15_15
 train_frac: 0.70

@@ -100,11 +100,24 @@ Commands
 Run Local Inference:
 python run_inference.py --config configs/m1.yaml --left <path_to_left_image> --right <path_to_right_image>
 
+
 Build the Docker:
 docker build -t face-verifier .
 
-Docker Inference:
+Docker Inference (working example):
 docker run --rm -v "${PWD}:/app" face-verifier \
-python run_inference.py --config configs/m1.yaml --left <path_to_left_image> --right <path_to_right_image>
+  python scripts/run_inference.py --config configs/m1.yaml \
+  --left lfw/Zoran_Djindjic/Zoran_Djindjic_0001.jpg \
+  --right lfw/Zoran_Djindjic/Zoran_Djindjic_0002.jpg
+
+Docker Inference (general code):
+docker run --rm -v "${PWD}:/app" face-verifier \
+  python scripts/run_inference.py --config configs/m1.yaml \
+  --left lfw/<person_name>/<image_1>.jpg \
+  --right lfw/<person_name>/<image_2>.jpg
+
+**NOTE:** Image paths must be provided relative to the LFW dataset root using the format:
+lfw/<person_name>/<image_file>.jpg
+
 
 Milestone 3 uses a lightweight dependency file (requirements-m3.txt) to support inference and reduce build complexity. This environment includes only the packages required for embedding generation and inference, while the full project dependencies from Milestones 1 and 2 remain in requirements.txt.
