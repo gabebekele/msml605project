@@ -121,3 +121,39 @@ lfw/<person_name>/<image_file>.jpg
 
 
 Milestone 3 uses a lightweight dependency file (requirements-m3.txt) to support inference and reduce build complexity. This environment includes only the packages required for embedding generation and inference, while the full project dependencies from Milestones 1 and 2 remain in requirements.txt.
+
+
+Milestone 4
+
+Milestone 4 is about finishing the system by adding documentation, profiling, and making sure everything can be reproduced from a clean clone. At this point, the goal is not to change the model, but to show how the system works, where it performs well, and where it may fail.
+
+System Overview
+The final system uses an embedding-based system for face verification. Images are loaded from the LFW dataset, resized and normalized, and then passed through InceptionResnetV1 (pretrained on VGGFace2) to create embeddings. Cosine similarity is used to compare the embeddings, and a fixed threshold of 0.30612244897959173 is used to decide whether two images belong to the same person. Confidence is defined as how far the similarity score is from the threshold, so predictions further away from the threshold are considered more confident.
+
+System Card
+The System Card goes into more detail about the system, including how it is intended to be used, its limitations, common failure cases, and potential fairness risks. It also documents the threshold and assumptions used by the system. It is located at:
+
+reports/System_Card.pdf
+
+Profiling Report
+The profiling report shows how the system performs when it runs. It shows preprocessing time, embedding time, scoring time, and total latency. It also looks at how performance changes with different batch sizes. The report is located at:
+
+reports/Profiling report.pdf
+
+How to Run
+To reproduce the profiling results, run:
+
+python scripts/profiling.py --config configs/m1.yaml --pairs outputs/pairs/val.csv --batch_sizes 1 5 10 25
+
+This will output latency breakdowns for each stage of the pipeline.
+
+Outputs
+The outputs for this milestone include the System Card, profiling report, and reproducibility checklist. These are all stored in the reports/ folder.
+
+Reproducibility Notes
+A reproducibility checklist is included so the system can be run from a clean clone step-by-step. It includes setup, ingestion, pair generation, inference, and profiling commands. It is located at:
+
+reports/reproducibility_checklist.md
+
+Final Tag
+The final version of the project is tagged as v1.0-final.
