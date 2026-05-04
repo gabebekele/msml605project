@@ -1,0 +1,16 @@
+
+seed: 123
+data_dir: data/lfw
+outputs_dir: outputs
+
+# inference settings
+threshold: 0.30612244897959173
+normalization: null
+
+# Profiling settings
+pairs_path: outputs/pairs/val.csv
+batch_sizes:
+  - 1
+  - 5
+  - 10
+  - 25
